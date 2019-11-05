@@ -1,3 +1,5 @@
+
+
 var nombres ;
 var muertos = [];
 var longitud;
@@ -12,6 +14,16 @@ var fantasmas;
 var animacion = document.getElementById("rejilla");
 
 
+function onLoadCargameTodosLosVivos(){
+    fetch('../Weel-of-Doom-master/functions/connect.php')
+    .then(function(response) {
+        console.log(response);
+      return response.json();
+    })
+    .then(function(myJson) {
+      console.log(myJson);
+    });
+}
 
 function checkDataBase(users){
     $.ajax({

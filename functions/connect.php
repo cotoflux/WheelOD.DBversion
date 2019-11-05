@@ -1,36 +1,38 @@
 
 <?php
 
-$con = mysqli_connect("localhost","root","","wheel1");
+namespace Connections;
 
+Class Connect
+{
 
-if (mysqli_connect_errno())
- {
- echo "Failed to connect to MySQL: " . mysqli_connect_error();
- }
- 
- if(isset($_POST["users"])){
-   $sql = "SELECT * FROM users";
- }
+    public $con;
+    private $hostname ="localhost";
+    private $userName ="root";
+    private $password = "password";
+    private $database = "wheel1";
+    
+    function connectDB()
+    {
+        $con = mysqli_connect($this->hostname,$this->userName,$this->password, $this->database);
 
+        if(mysqli_connect_errno()){
+            echo "Failed to connect to the Data Base".mysqli_connect_error();
+        }
+        return $con;
 
-if(isset($_GET["name"])){
-   $dato=$_GET["name"];
-   $sql = "UPDATE users SET dead=1 WHERE name='$dato'";
- }
+    }
+    
+    function estoyConectado()
+    {
+        $connectado =$this->connectDB;
 
-if(isset($sql)){
-   $result = $con->query($sql);
-   $usuarios = array();
-   if ($result->num_rows > 0) {
-      // output data of each row
-      while($row = $result->fetch_assoc()) {
-            $results[]= $row;
-        
-     json_encode($results);
-      }
-   }
+        if ($connectado) {
+            return "Estoy conectado";
+        }
+    }
+    
 }
 
-$con->close();
-?>
+
+
