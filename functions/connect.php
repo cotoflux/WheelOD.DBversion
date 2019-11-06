@@ -30,7 +30,7 @@ class Connect
             return "Estoy conectado";
         }
     }
-    private function veoLosVivos()
+    function veoLosVivos()
     {
         $sql = "SELECT * FROM users WHERE killed=0";
         $conexion = mysqli_query($this->con, $sql);

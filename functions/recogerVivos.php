@@ -1,6 +1,5 @@
 <?php
-
-
+include '../vendor/autoload.php';
 use Connections\Connect;
 
 $devolverVivos = new Connect();
